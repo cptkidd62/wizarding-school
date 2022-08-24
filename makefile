@@ -1,12 +1,16 @@
-NAME = wizarding-school
 
 CC = g++
-CFLAGS = -Wall -Werror -Wextra
-SRC_FOLDER = source
-SRCS = _main.cpp
+CFLAGS = -Wall -g
+LIBS = -lsfml-graphics -lsfml-window -lsfml-system
+SRCS = source/_main.cpp source/App.cpp
+OBJS = $(SRCS:.c=.o)
+MAIN = wizarding-school
 
-$(NAME): _main.o
-	$(CC) $(CFLAGS) -o $(NAME) _main.o
+all: $(MAIN)
 
-_main.o: $(SRC_FOLDER)/_main.cpp
-	$(CC) $(CFLAGS) -c $(SRC_FOLDER)/_main.cpp
+$(MAIN): $(OBJS) 
+		$(CC) $(CFLAGS) -o $(MAIN) $(OBJS) $(LIBS)
+
+.c.o:	$(CC) $(CFLAGS) -c $<  -o $@
+
+clean:	$(RM) *.o *~ $(MAIN)

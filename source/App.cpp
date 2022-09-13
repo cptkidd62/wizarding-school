@@ -1,4 +1,5 @@
 #include "App.hpp"
+#include "Button.hpp"
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Window/VideoMode.hpp>
@@ -16,12 +17,13 @@ void App::run()
 {
     sf::Text title;
     sf::Font font;
-    font.loadFromFile("../resources/fonts/RubikDirt-Regular.ttf");
+    font.loadFromFile("resources/fonts/RubikDirt-Regular.ttf");
     title.setString("Wizarding School");
     title.setFont(font);
     title.setFillColor(sf::Color::Yellow);
     title.setCharacterSize(40);
-    title.setPosition(40, 40);
+    title.setPosition(40, 140);
+    Button samplebutton;
 
     while (window.isOpen())
     {
@@ -34,6 +36,7 @@ void App::run()
 
         window.clear();
         window.draw(title);
+        window.draw(samplebutton);
         window.display();
     }
 }

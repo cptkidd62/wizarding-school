@@ -23,7 +23,7 @@ void App::run()
     title.setFillColor(sf::Color::Yellow);
     title.setCharacterSize(40);
     title.setPosition(40, 140);
-    Button samplebutton;
+    Button samplebutton(100, 250, 200, 100, "Play Game", 40);
 
     while (window.isOpen())
     {

@@ -10,6 +10,7 @@ class Button : public sf::Drawable
 {
   public:
     Button();
+    Button(int x, int y, int width, int height, std::string msg, int size);
     ~Button();
 
   protected:

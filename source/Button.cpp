@@ -4,14 +4,24 @@
 
 Button::Button()
 {
-    box.setPosition(50, 50);
-    box.setSize(sf::Vector2f(100, 50));
+    Button(50, 50, 150, 50, "Button", 30);
+}
+
+Button::Button(int x, int y, int width, int height, std::string msg, int size = 30)
+{
+    box.setPosition(x, y);
+    box.setSize(sf::Vector2f(width, height));
     box.setFillColor(sf::Color::Red);
     font.loadFromFile("resources/fonts/RubikDirt-Regular.ttf");
     text.setFont(font);
-    text.setString("Button");
-    text.setCharacterSize(30);
-    text.setPosition(60, 60);
+    text.setString(msg);
+    text.setCharacterSize(size);
+    if (text.getGlobalBounds().width + height - size > width)
+    {
+        box.setSize(sf::Vector2f(text.getGlobalBounds().width + height - size, height));
+    }
+    text.setPosition(box.getGlobalBounds().left + box.getGlobalBounds().width / 2. - text.getGlobalBounds().width / 2,
+                     box.getGlobalBounds().top + (box.getGlobalBounds().height - size) / 2.);
     text.setFillColor(sf::Color::White);
 }
 

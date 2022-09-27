@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window/Window.hpp>
 #include "Button.hpp"
+#include "Game.hpp"
 
 class App
 {
@@ -15,6 +16,10 @@ class App
 
   private:
     sf::RenderWindow window;
+    enum {MENU, GAME, END} app_state;
+
+    void runMenu();
+    void runGame();
 };
 
 #endif

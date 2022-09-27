@@ -7,6 +7,7 @@
 App::App()
 {
     window.create(sf::VideoMode(800, 600), "Wizarding School");
+    app_state = MENU;
 }
 
 App::~App()
@@ -14,6 +15,21 @@ App::~App()
 }
 
 void App::run()
+{
+    switch (app_state)
+    {
+    case MENU:
+        runMenu();
+        break;
+    case GAME:
+        runGame();
+        break;
+    case END:
+        return;
+    }
+}
+
+void App::runMenu()
 {
     sf::Text title;
     sf::Font font;
@@ -23,15 +39,24 @@ void App::run()
     title.setFillColor(sf::Color::Yellow);
     title.setCharacterSize(40);
     title.setPosition(40, 140);
-    Button samplebutton(100, 250, 200, 100, "Play Game", 40);
+    Button samplebutton(100, 250, 200, 100, "Play Game", false, 40);
 
-    while (window.isOpen())
+    while (app_state == MENU)
     {
         sf::Event event;
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
+            {
                 window.close();
+                app_state = END;
+                return;
+            }
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Key::G)
+            {
+                app_state = GAME;
+                return;
+            }
         }
 
         window.clear();
@@ -39,4 +64,11 @@ void App::run()
         window.draw(samplebutton);
         window.display();
     }
+}
+
+void App::runGame()
+{
+    Game newgame;
+    newgame.run(window);
+    app_state = MENU;
 }

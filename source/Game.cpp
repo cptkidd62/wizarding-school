@@ -9,8 +9,6 @@ Game::Game()
 
 Game::~Game()
 {
-    // window = nullptr;
-    // delete window;
 }
 
 void Game::run(sf::RenderWindow &window)
@@ -32,7 +30,7 @@ void Game::run(sf::RenderWindow &window)
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Key::Escape)
             {
                 game_state = END;
-                return;
+                break;
             }
         }
 

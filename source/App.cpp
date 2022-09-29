@@ -16,16 +16,19 @@ App::~App()
 
 void App::run()
 {
-    switch (app_state)
+    while (app_state != END)
     {
-    case MENU:
-        runMenu();
-        break;
-    case GAME:
-        runGame();
-        break;
-    case END:
-        return;
+        switch (app_state)
+        {
+        case MENU:
+            runMenu();
+            break;
+        case GAME:
+            runGame();
+            break;
+        case END:
+            return;
+        }
     }
 }
 
@@ -50,12 +53,12 @@ void App::runMenu()
             {
                 window.close();
                 app_state = END;
-                return;
+                break;
             }
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Key::G)
             {
                 app_state = GAME;
-                return;
+                break;
             }
         }
 

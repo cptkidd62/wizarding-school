@@ -14,7 +14,6 @@ class Game
     void run(sf::RenderWindow &window);
 
   private:
-    sf::RenderWindow *window;
     enum {RUNNING, PAUSE, END} game_state;
 };
 

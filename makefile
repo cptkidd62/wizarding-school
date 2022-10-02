@@ -2,7 +2,7 @@
 CC = g++
 CFLAGS = -Wall -g
 LIBS = -lsfml-graphics -lsfml-window -lsfml-system
-SRCS = source/_main.cpp source/App.cpp source/Game.cpp source/Button.cpp
+SRCS = source/_main.cpp source/App.cpp source/Button.cpp source/Entity.cpp source/Game.cpp source/Player.cpp source/Wizard.cpp
 OBJS = $(SRCS:.c=.o)
 MAIN = wizarding-school
 

@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include "Player.hpp"
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Keyboard.hpp>
 
@@ -22,6 +23,8 @@ void Game::run(sf::RenderWindow &window)
     title.setCharacterSize(40);
     title.setPosition(40, 140);
 
+    Player player;
+
     while (game_state != END)
     {
         sf::Event event;
@@ -34,8 +37,28 @@ void Game::run(sf::RenderWindow &window)
             }
         }
 
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
+        {
+            player.move({0, -2}, 1);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
+        {
+            player.move({-2, 0}, 1);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
+        {
+            player.move({0, 2}, 1);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
+        {
+            player.move({2, 0}, 1);
+        }
+
+        player.update();
+
         window.clear();
         window.draw(title);
+        window.draw(player);
         window.display();
     }
 }
